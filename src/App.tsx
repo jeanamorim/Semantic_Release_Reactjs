@@ -16,7 +16,7 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1>Vite +ddd React</h1>
+      <h1>Vite +ddd Redddact</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count} teste d na pratica do semantic release
