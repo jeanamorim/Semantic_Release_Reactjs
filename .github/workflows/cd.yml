@@ -1,20 +1,23 @@
-name: CD
+name: Semantic release 
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
-  
 on:
-  release:
-    types: [published]
-
+  push:
+    branches:
+      - master
 jobs:
-  health-check:
+  publish:
     runs-on: ubuntu-latest
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      VERSION: ${{ github.event.release.tag_name }}
     steps:
       - uses: actions/checkout@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
         with:
-          ref: ${{env.VERSION }}
+          node-version: 12
+      - name: Install dependencies
+        run: npm install 
+      - name: Build app
+        run: npm run build 
+      - name: Semantic release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: npx semantic-release
