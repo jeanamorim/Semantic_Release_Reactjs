@@ -19,7 +19,7 @@ function App() {
       <h1>Vite + React</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
-          count is {count} teste na pratica do semantic release
+          count is {count} teste d na pratica do semantic release
         </button>
         <p>
           Edit <code>src/App.tsx</code>ande & and and save to test HMR
