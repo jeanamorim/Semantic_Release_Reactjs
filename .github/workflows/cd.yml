@@ -1,0 +1,20 @@
+name: CD
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+  
+on:
+  release:
+    types: [published]
+
+jobs:
+  health-check:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      VERSION: ${{ github.event.release.tag_name }}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{env.VERSION }}
